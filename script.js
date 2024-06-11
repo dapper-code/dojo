@@ -1,7 +1,7 @@
-// variables that will be changing
+// variables
 let xp = 0;
 let health = 100;
-let money = 50;
+let money = 250;
 let currentWeaponIndex = 0;
 let fighting;
 let masterHealth;
@@ -17,6 +17,12 @@ const goldText = document.querySelector("#goldText");
 const masterStats = document.querySelector("#masterStats");
 const masterName = document.querySelector("#masterName");
 const masterHealthText = document.querySelector("#masterHealth");
+const weapons = [
+  { name: 'stick', power: 5 },
+  { name: 'dagger', power: 30 },
+  { name: 'claw hammer', power: 50 },
+  { name: 'sword', power: 100 }
+];
 const locations = [
   {
     name: "training camp square",
@@ -87,7 +93,7 @@ function buyHealth() {
 // function to check if character has enough gold to buy weapon.
 function buyWeapon() {
   // once player has best weapon they can not buy another one.
-  if (currentWeaponIndex < 3) {
+  if (currentWeaponIndex < weapons.length - 1) {
     if (gold >= 30) {
       gold -= 30;
       currentWeaponIndex++;
@@ -104,6 +110,7 @@ function buyWeapon() {
 
 
 function fightSlim() {
+
 
 }
 

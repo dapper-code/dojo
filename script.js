@@ -1,3 +1,4 @@
+// variables that will be changing
 let xp = 0;
 let health = 100;
 let money = 50;
@@ -64,21 +65,43 @@ function goStore() {
 
 function goRing() {
   update(locations[2]);
-  console.log("Pick your openent.")
+  console.log("Pick your opponent.")
 }
 
 function fightMaster() {
   console.log("Fighting master.");
 }
 
+// function to check if character has enough gold to buy health.
 function buyHealth() {
-    gold -= 10;
-    health += 10;
-}
+    if (gold >= 10) {
+      gold -= 10;
+      health += 10;
+      goldText.innerText = gold;
+      healthText.innerText = health;
+    } else {
+      text.innerText = "You do not have enough gold to buy health.";
+      }
+  }
 
+// function to check if character has enough gold to buy weapon.
 function buyWeapon() {
-
+  // once player has best weapon they can not buy another one.
+  if (currentWeaponIndex < 3) {
+    if (gold >= 30) {
+      gold -= 30;
+      currentWeaponIndex++;
+      goldText.innerText = gold;
+      let newWeapon = weapons[currentWeaponIndex].name;
+      text.innerText = "You now have a " + newWeapon + ".";
+      inventory.push(newWeapon);
+      text.innerText += " In your inventory you have: " + inventory;
+    } else {
+      text.innerText = "You do not have enough gold to buy a weapon.";
+    }
+  }
 }
+
 
 function fightSlim() {
 

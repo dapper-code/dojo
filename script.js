@@ -13,7 +13,7 @@ const button3 = document.querySelector("#button3");
 const text = document.querySelector("#text");
 const xpText = document.querySelector("#xpText");
 const healthText = document.querySelector("#healthText");
-const goldText = document.querySelector("#goldText");
+const moneyText = document.querySelector("#moneyText");
 const masterStats = document.querySelector("#masterStats");
 const masterName = document.querySelector("#masterName");
 const masterHealthText = document.querySelector("#masterHealth");
@@ -28,17 +28,17 @@ const locations = [
     name: "training camp square",
     "button text": ["Go to store", "Go to train", "Fight master"],
     "button functions": [goStore, goRing, fightMaster],
-    text: "You are in training camp square. You see a sign that says \"Training camp\"."
+    text: "You are in training camp. You see a sign the sign says \"Training camp\"."
   },
   {
     name: "store",
-    "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
+    "button text": ["Buy 10 health (10 money)", "Buy weapon (30 money)", "Go to training camp"],
     "button functions": [buyHealth, buyWeapon, goTrain],
     text: "You have entered the store."
   },
   {
     name: "fight master",
-    "button text": ["Fight slim", "Fight beast", "Go to town square"],
+    "button text": ["Fight slim", "Fight beast", "Go to training camp"],
     "button functions": [fightSlim, fightBeast, goTrain],
     text: "You have now entered the ring. who do you want to fight?"
   }
@@ -78,32 +78,32 @@ function fightMaster() {
   console.log("Fighting master.");
 }
 
-// function to check if character has enough gold to buy health.
+// function to check if character has enough money to buy health.
 function buyHealth() {
-    if (gold >= 10) {
-      gold -= 10;
+    if (money >= 10) {
+      money -= 10;
       health += 10;
-      goldText.innerText = gold;
+      moneyText.innerText = money;
       healthText.innerText = health;
     } else {
-      text.innerText = "You do not have enough gold to buy health.";
+      text.innerText = "You do not have enough money to buy health.";
       }
   }
 
-// function to check if character has enough gold to buy weapon.
+// function to check if character has enough money to buy weapon.
 function buyWeapon() {
   // once player has best weapon they can not buy another one.
   if (currentWeaponIndex < weapons.length - 1) {
-    if (gold >= 30) {
-      gold -= 30;
+    if (money >= 30) {
+      money -= 30;
       currentWeaponIndex++;
-      goldText.innerText = gold;
+      moneyText.innerText = money;
       let newWeapon = weapons[currentWeaponIndex].name;
       text.innerText = "You now have a " + newWeapon + ".";
       inventory.push(newWeapon);
       text.innerText += " In your inventory you have: " + inventory;
     } else {
-      text.innerText = "You do not have enough gold to buy a weapon.";
+      text.innerText = "You do not have enough money to buy a weapon.";
     }
   }
 }
